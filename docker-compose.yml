@@ -7,7 +7,7 @@ services:
       context: ./requirements/nginx
       dockerfile: Dockerfile
     ports:
-      - "80:443"
+      - "443:443"
     depends_on:
       - wordpress
     restart: on-failure
@@ -38,6 +38,8 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    expose:
+      - 3306
     env_file:
       - .env
     volumes:
