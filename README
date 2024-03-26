@@ -1,0 +1,2 @@
+[ ] These volumes must be available from the /home/<login>/datahost machine folder usingDocker.
+[ ] For readability reasons, we will need to configure our domain name so that it points to our local IP address . This domain name will be<login>.42.fr
