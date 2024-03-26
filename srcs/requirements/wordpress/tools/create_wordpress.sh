@@ -21,6 +21,17 @@ else
 	sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 	cp wp-config-sample.php wp-config.php
+
+	echo "Installing WordPress..."
+    wp core install --url="https://localhost/" --title="Nauman Munir" --admin_user="${MYSQL_USER}" --admin_password="${MYSQL_PASSWORD}" --admin_email="${WP_EMAIL}" --path=/var/www/html/ --allow-root
+    if [ $? -eq 0 ]; then
+        echo "WordPress installed successfully."
+    else
+        echo "Error installing WordPress."
+        exit 1
+    fi
 fi
 
+chown -R  www-data:www-data /var/www/html/
+chmod -R 755 /var/www/html/
 exec "$@"

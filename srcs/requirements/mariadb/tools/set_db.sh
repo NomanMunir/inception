@@ -1,23 +1,22 @@
 cat .setup 2> /dev/null
 if [ $? -ne 0 ]; then
-    # Start MySQL/MariaDB service
-    /usr/bin/mysqld_safe --datadir=/var/lib/mysql &
+    # Start MySQL/MariaDB service in the background
+    # /usr/bin/mysqld_safe --datadir=/var/lib/mysql &
 
     # Wait for MySQL/MariaDB service to become available
-    while ! mysqladmin ping -h "$MYSQL_HOSTNAME" --silent; do
-        sleep 1
-    done
+    # while ! mysqladmin ping -h "$MYSQL_HOSTNAME" --silent; do
+    #     sleep 1
+    # done
 
     # Initialize database using init_db.sql
-    eval "echo \"$(cat /tmp/init_db.sql)\"" | mariadb
+    # eval "echo \"$(cat /tmp/init_db.sql)\"" | mariadb
 
     # Create .setup file to indicate setup completion
-
     touch .setup
 fi
 
-    # If .setup file exists, only start MySQL/MariaDB service
-/usr/bin/mysqld_safe --datadir=/var/lib/mysql
+# If .setup file exists, only start MySQL/MariaDB service
+# /usr/bin/mysqld_safe --datadir=/var/lib/mysql
 
 while true; do
     sleep 1
