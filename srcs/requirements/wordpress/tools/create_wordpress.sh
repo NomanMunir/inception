@@ -22,8 +22,8 @@ else
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 	cp wp-config-sample.php wp-config.php
 
-	echo "Installing WordPress..."
     wp core install --url="https://localhost/" --title="Nauman Munir" --admin_user="${MYSQL_USER}" --admin_password="${MYSQL_PASSWORD}" --admin_email="${WP_EMAIL}" --path=/var/www/html/ --allow-root
+	wp user create --allow-root ${WP_USER_LOGIN} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD}
     if [ $? -eq 0 ]; then
         echo "WordPress installed successfully."
     else

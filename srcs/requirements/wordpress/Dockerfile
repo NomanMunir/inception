@@ -12,7 +12,7 @@ RUN mkdir -p /run/php
 
 # Copy the .conf in the html directory
 
-COPY ./config/www.conf /etc/php83/php-fpm.d
+COPY ./conf/www.conf /etc/php83/php-fpm.d
 
 #we copy the script, give the right to launch it in local on our computer
 COPY ./tools/create_wordpress.sh /usr/local/bin/
